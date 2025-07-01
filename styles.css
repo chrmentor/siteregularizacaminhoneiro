@@ -897,3 +897,190 @@ body {
     transform: translateY(-2px);
 }
 
+
+
+/* New Services Section */
+.services-new {
+    padding: 100px 0;
+    background-color: #f8f8f8;
+}
+
+.services-new-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 60px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.services-new-left {
+    flex: 1;
+    max-width: 50%;
+}
+
+.services-new-left .services-new-logo {
+    max-width: 80px;
+    margin-bottom: 20px;
+}
+
+.services-new-left h2 {
+    font-size: 2.8rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 20px;
+    color: #1f2937;
+}
+
+.services-new-left p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #6b7280;
+    margin-bottom: 20px;
+}
+
+.services-new-right {
+    flex: 1;
+    max-width: 50%;
+    background: white;
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.services-new-right h3 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #1f2937;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.services-new-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.service-new-item {
+    background-color: #f0f0f0;
+    padding: 15px 25px;
+    border-radius: 8px;
+    font-size: 1.05rem;
+    color: #374151;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+}
+
+.service-new-item:hover {
+    background-color: #e0e0e0;
+}
+
+@media (max-width: 768px) {
+    .services-new-container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .services-new-left,
+    .services-new-right {
+        max-width: 100%;
+    }
+
+    .services-new-left h2 {
+        font-size: 2.2rem;
+    }
+
+    .services-new-left .btn {
+        margin: 0 auto;
+    }
+
+    .services-new-right h3 {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .services-new-left h2 {
+        font-size: 1.8rem;
+    }
+
+    .services-new-right {
+        padding: 30px;
+    }
+
+    .service-new-item {
+        font-size: 0.95rem;
+        padding: 12px 20px;
+    }
+}
+
+
+
+
+.services-new-left h2 .highlight {
+    color: #1e3a8a; /* Cor principal da marca Regulariza Caminhoneiro */
+}
+
+.services-new-left p {
+    color: #4b5563; /* Um tom de cinza um pouco mais escuro para melhor legibilidade */
+}
+
+.services-new-right {
+    background: linear-gradient(145deg, #ffffff, #f9f9f9); /* Gradiente sutil para o fundo do card de serviços */
+    border: 1px solid #e0e0e0; /* Borda suave para o card */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05); /* Sombra mais suave */
+}
+
+.services-new-right h3 {
+    color: #1e3a8a; /* Título dos serviços com a cor principal da marca */
+    border-bottom: 2px solid #ff6b35; /* Linha de destaque abaixo do título */
+    padding-bottom: 15px;
+    margin-bottom: 35px;
+}
+
+.service-new-item {
+    background-color: #f5f5f5; /* Fundo mais claro para os itens da lista */
+    border-left: 5px solid #ff6b35; /* Borda esquerda colorida para destaque */
+    border-radius: 5px; /* Bordas levemente arredondadas */
+    padding: 15px 20px;
+    font-weight: 500;
+    color: #374151;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+}
+
+.service-new-item:hover {
+    background-color: #fff8f5; /* Fundo mais claro e sutilmente alaranjado no hover */
+    border-left-color: #e55a2b; /* Escurece a borda no hover */
+    transform: translateX(5px); /* Pequeno movimento para a direita no hover */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+@media (max-width: 768px) {
+    .services-new-left h2 {
+        font-size: 2rem;
+    }
+
+    .services-new-right h3 {
+        font-size: 1.6rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .services-new-left h2 {
+        font-size: 1.6rem;
+    }
+
+    .services-new-right {
+        padding: 25px;
+    }
+
+    .service-new-item {
+        font-size: 0.9rem;
+        padding: 10px 15px;
+    }
+}
+
+
