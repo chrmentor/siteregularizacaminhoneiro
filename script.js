@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }, observerOptions);
 
     // Observe elements for fade-in animation
-    document.querySelectorAll('.about-card, .service-item, .pricing-card, .testimonial-card, .stats').forEach(el => {
+    document.querySelectorAll(".service-item, .pricing-card, .testimonial-card, .stats").forEach(el => {
         el.classList.add('fade-in');
         observer.observe(el);
     });
@@ -241,14 +241,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Parallax effect for hero section
-    window.addEventListener('scroll', function() {
-        const scrolled = window.pageYOffset;
-        const hero = document.querySelector('.hero');
-        if (hero) {
-            hero.style.transform = `translateY(${scrolled * 0.5}px)`;
-        }
-    });
+
 
     // Add loading animation
     window.addEventListener('load', function() {
@@ -309,7 +302,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Initialize AOS (Animate On Scroll) alternative
     function initScrollAnimations() {
-        const elements = document.querySelectorAll('.about-card, .service-item, .pricing-card, .testimonial-card');
+        const elements = document.querySelectorAll(".service-item, .pricing-card, .testimonial-card");
         
         elements.forEach((element, index) => {
             element.style.opacity = '0';
