@@ -121,7 +121,7 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // Create WhatsApp message
             const whatsappMessage = `Olá! Meu nome é ${nome}.%0A%0A${mensagem}%0A%0AContatos:%0AEmail: ${email}%0ATelefone: ${telefone}`;
-            const whatsappURL = `https://wa.me/5511999998888?text=${whatsappMessage}`;
+            const whatsappURL = `https://wa.me/5544999275821?text=${whatsappMessage}`;
             
             // Open WhatsApp
             window.open(whatsappURL, '_blank');
