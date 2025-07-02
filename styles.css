@@ -895,14 +895,10 @@ body {
 .scroll-top:hover {
     background: #e55a2b;
     transform: translateY(-2px);
-}
-
-
-
-/* New Services Section */
 .services-new {
     padding: 100px 0;
-    background-color: #f8f8f8;
+    background-color: #2A3B4C; /* Tom de azul marinho mais escuro, similar à imagem */
+    color: white; /* Cor do texto padrão para o bloco */
 }
 
 .services-new-container {
@@ -923,6 +919,7 @@ body {
 .services-new-left .services-new-logo {
     max-width: 80px;
     margin-bottom: 20px;
+    filter: none; /* Remove o filtro para que a logo seja laranja */
 }
 
 .services-new-left h2 {
@@ -930,20 +927,24 @@ body {
     font-weight: 700;
     line-height: 1.2;
     margin-bottom: 20px;
-    color: #1f2937;
+    color: white; /* Título em branco */
+}
+
+.services-new-left h2 .highlight {
+    color: #ff6b35; /* Destaque em laranja */
 }
 
 .services-new-left p {
     font-size: 1.1rem;
     line-height: 1.6;
-    color: #6b7280;
+    color: #e0e0e0; /* Parágrafos em cinza claro */
     margin-bottom: 20px;
 }
 
 .services-new-right {
     flex: 1;
     max-width: 50%;
-    background: white;
+    background: white; /* Fundo do card de serviços permanece branco */
     padding: 40px;
     border-radius: 16px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
@@ -952,8 +953,10 @@ body {
 .services-new-right h3 {
     font-size: 1.8rem;
     font-weight: 600;
-    color: #1f2937;
-    margin-bottom: 30px;
+    color: #1f2937; /* Título dos serviços em cinza escuro */
+    border-bottom: 2px solid #ff6b35; /* Linha de destaque em laranja */
+    padding-bottom: 15px;
+    margin-bottom: 35px;
     text-align: center;
 }
 
@@ -964,17 +967,21 @@ body {
 }
 
 .service-new-item {
-    background-color: #f0f0f0;
-    padding: 15px 25px;
-    border-radius: 8px;
-    font-size: 1.05rem;
-    color: #374151;
+    background-color: #f5f5f5; /* Fundo dos itens da lista em cinza claro */
+    border-left: 5px solid #ff6b35; /* Borda esquerda em laranja */
+    border-radius: 5px;
+    padding: 15px 20px;
     font-weight: 500;
-    transition: background-color 0.3s ease;
+    color: #374151; /* Texto dos itens em cinza escuro */
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
 }
 
 .service-new-item:hover {
-    background-color: #e0e0e0;
+    background-color: #fff8f5; /* Fundo dos itens no hover em laranja claro */
+    border-left-color: #e55a2b; /* Borda esquerda no hover em laranja mais escuro */
+    transform: translateX(5px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
 @media (max-width: 768px) {
@@ -1007,23 +1014,14 @@ body {
     }
 
     .services-new-right {
-        padding: 30px;
+        padding: 25px;
     }
 
     .service-new-item {
-        font-size: 0.95rem;
-        padding: 12px 20px;
+        font-size: 0.9rem;
+        padding: 10px 15px;
     }
-}
-
-
-
-
-.services-new-left h2 .highlight {
-    color: #1e3a8a; /* Cor principal da marca Regulariza Caminhoneiro */
-}
-
-.services-new-left p {
+}ew-left p {
     color: #4b5563; /* Um tom de cinza um pouco mais escuro para melhor legibilidade */
 }
 
