@@ -1211,7 +1211,7 @@ body {
 }
 
 .price-value {
-    font-size: 6.25em; /* Mantido como 6.25em */
+    font-size: 3.125em; /* Reduzido para caber na coluna */
     font-weight: 700;
     color: #ff6b35;
     line-height: 1;
