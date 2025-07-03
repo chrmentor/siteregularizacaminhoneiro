@@ -934,3 +934,49 @@ body {
 }
 
 
+
+
+.plan-options {
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
+    margin-top: 30px;
+    flex-wrap: wrap;
+}
+
+.plan-option-item {
+    flex-basis: calc(33.33% - 20px);
+    max-width: calc(33.33% - 20px);
+    text-align: center;
+    padding: 20px;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.plan-option-item p {
+    margin-bottom: 10px;
+    font-weight: 600;
+    color: #1f2937;
+}
+
+
+
+
+.plan-option-item p {
+    text-align: left;
+    font-weight: normal;
+    font-size: 0.9em;
+}
+
+.plan-option-item p b {
+    font-weight: bold;
+    font-size: 1em;
+}
+
+.plan-option-item button {
+    margin-bottom: 15px;
+}
+
+
