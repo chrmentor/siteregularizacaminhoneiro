@@ -989,3 +989,13 @@ body {
 }
 
 
+
+
+@media (max-width: 768px) {
+    .plan-option-item {
+        flex-basis: 100%;
+        max-width: 100%;
+    }
+}
+
+
