@@ -999,3 +999,248 @@ body {
 }
 
 
+
+
+.price-display {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.price-value {
+    font-size: 1.5625em; /* Reduzido em 50% de 3.125em */
+    font-weight: 700;
+    color: #ff6b35; /* Cor de destaque */
+    line-height: 1;
+}}
+
+.currency-symbol {
+    font-size: 0.83em; /* Aproximadamente 1/3 de 2.5em */
+    vertical-align: super;
+    margin-right: 2px;
+}
+
+.price-period {
+    font-size: 0.83em; /* Aproximadamente 1/3 de 2.5em */
+    vertical-align: baseline;
+    margin-left: 2px;
+}
+
+
+
+.plan-option-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: white;
+    border-radius: 16px;
+    padding: 30px;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.plan-option-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.plan-header {
+    margin-bottom: 20px;
+}
+
+.plan-header h3 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #1f2937;
+    margin-bottom: 10px;
+}
+
+.plan-header p {
+    font-size: 1em;
+    color: #6b7280;
+    line-height: 1.5;
+}
+
+.plan-features {
+    list-style: none;
+    text-align: left;
+    margin-bottom: 30px;
+    flex-grow: 1;
+}
+
+.plan-features li {
+    padding: 8px 0;
+    display: flex;
+    align-items: flex-start;
+    color: #374151;
+    font-size: 1em;
+    line-height: 1.4;
+}
+
+.plan-features li i {
+    color: #10b981; /* Cor verde para o check */
+    margin-right: 10px;
+    font-size: 1.1em;
+    margin-top: 3px;
+}
+
+.price-display {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+}
+
+.currency-symbol {
+    font-size: 1.5em; /* Ajustado para ser proporcional ao 97,00 */
+    vertical-align: super;
+    margin-right: 5px;
+    color: #ff6b35;
+    font-weight: 700;
+}
+
+.price-value {
+    font-size: 3.5em; /* Tamanho do 97,00 */
+    font-weight: 700;
+    color: #ff6b35;
+    line-height: 1;
+}
+
+.price-period {
+    font-size: 1.2em; /* Ajustado para ser proporcional ao 97,00 */
+    vertical-align: baseline;
+    margin-left: 5px;
+    color: #6b7280;
+    font-weight: 500;
+}
+
+.plan-cta {
+    margin-top: auto; /* Empurra o botão para o final do card */
+    width: 100%;
+}
+
+/* Ajustes para responsividade */
+@media (max-width: 768px) {
+    .plan-option-item {
+        flex-basis: 100%;
+        max-width: 100%;
+    }
+    .plan-features li {
+        justify-content: center;
+    }
+}
+
+
+
+
+
+/* Melhorias para a seção de planos */
+.plan-option-item {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.plan-option-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.plan-header {
+    margin-bottom: 20px;
+}
+
+.plan-header h3 {
+    font-size: 1.8em;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.plan-header p {
+    font-size: 1em;
+    color: #666;
+    line-height: 1.5;
+}
+
+.plan-features {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+    text-align: left;
+    width: 100%;
+}
+
+.plan-features li {
+    margin-bottom: 10px;
+    font-size: 0.95em;
+    color: #555;
+    display: flex;
+    align-items: flex-start;
+}
+
+.plan-features li i {
+    color: #28a745; /* Cor verde para o checkmark */
+    margin-right: 10px;
+    font-size: 1.1em;
+    margin-top: 3px; /* Ajuste fino para alinhamento */
+}
+
+.price-display {
+    margin: 20px 0 30px;
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    width: 100%;
+}
+
+.currency-symbol {
+    font-size: 1.25em; /* Reduzido em 50% de 2.5em */
+    font-weight: 600;
+    color: #ff6b35;
+    margin-right: 5px;
+}
+
+.price-value {
+    font-size: 6.25em; /* Mantido como 6.25em */
+    font-weight: 700;
+    color: #ff6b35;
+    line-height: 1;
+}
+
+.price-period {
+    font-size: 1.5em; /* Ajustado para ser menor que o price-value */
+    font-weight: 500;
+    color: #666;
+    margin-left: 5px;
+}
+
+.plan-cta {
+    margin-top: auto; /* Empurra o botão para o final da coluna */
+    width: 80%;
+    padding: 12px 25px;
+    font-size: 1.1em;
+    border-radius: 5px;
+    text-decoration: none;
+    display: inline-block;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .plan-option-item {
+        flex-basis: 100%;
+        max-width: 100%;
+        margin-bottom: 20px; /* Espaçamento entre as colunas no mobile */
+    }
+}
+
+
