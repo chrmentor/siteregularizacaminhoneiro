@@ -967,7 +967,9 @@ body {
 .plan-option-item p {
     text-align: left;
     font-weight: normal;
-    font-size: 0.9em;
+    font-size: 1em; /* Ajustado para um tamanho mais comum */
+    line-height: 1.5; /* Melhorar a legibilidade */
+    color: #374151; /* Garantir a cor padrão do texto */
 }
 
 .plan-option-item p b {
