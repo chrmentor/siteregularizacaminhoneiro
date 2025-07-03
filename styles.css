@@ -980,3 +980,10 @@ body {
 }
 
 
+
+
+.pricing .section-header {
+    margin-bottom: 30px; /* Reduzir o espaço abaixo do cabeçalho */
+}
+
+
