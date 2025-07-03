@@ -1129,7 +1129,7 @@ body {
         max-width: 100%;
     }
     .plan-features li {
-        justify-content: center;
+        justify-content: flex-start;
     }
 }
 
