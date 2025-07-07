@@ -83,10 +83,26 @@ document.addEventListener('DOMContentLoaded', function() {
     }, observerOptions);
 
     // Observe elements for fade-in animation
-    document.querySelectorAll(".service-item, .pricing-card, .testimonial-card, .stats").forEach(el => {
-        el.classList.add('fade-in');
-        observer.observe(el);
-    });
+    const observeElements = () => {
+        document.querySelectorAll(".service-item, .pricing-card, .testimonial-card, .stats").forEach(el => {
+            el.classList.add('fade-in');
+            observer.observe(el);
+        });
+    };
+    observeElements();
+
+    // Re-observe elements for fade-in animation after DOM changes
+    const reObserveElements = () => {
+        document.querySelectorAll(".testimonial-card").forEach(el => {
+            if (!el.classList.contains('fade-in')) {
+                el.classList.add('fade-in');
+                observer.observe(el);
+            }
+        });
+    };
+
+    // Call reObserveElements after initial load and any dynamic content additions
+    reObserveElements();
 
     // FAQ Accordion
     document.querySelectorAll('.faq-question').forEach(question => {
@@ -312,6 +328,19 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     initScrollAnimations();
+
+    // Re-observe elements for fade-in animation after DOM changes
+    const reObserveElements = () => {
+        document.querySelectorAll(".testimonial-card").forEach(el => {
+            if (!el.classList.contains('fade-in')) {
+                el.classList.add('fade-in');
+                observer.observe(el);
+            }
+        });
+    };
+
+    // Call reObserveElements after initial load and any dynamic content additions
+    reObserveElements();
 
     // Performance optimization: Debounce scroll events
     function debounce(func, wait) {
