@@ -1099,26 +1099,24 @@ body {
 }
 
 .currency-symbol {
-    font-size: 1.5em; /* Ajustado para ser proporcional ao 97,00 */
-    vertical-align: super;
-    margin-right: 5px;
+    font-size: 1.25em; /* Reduzido em 50% de 2.5em */
+    font-weight: 600;
     color: #ff6b35;
-    font-weight: 700;
+    margin-right: 5px;
 }
 
 .price-value {
-    font-size: 3.5em; /* Tamanho do 97,00 */
+    font-size: 3.125em; /* Reduzido para caber na coluna */
     font-weight: 700;
     color: #ff6b35;
     line-height: 1;
 }
 
 .price-period {
-    font-size: 1.2em; /* Ajustado para ser proporcional ao 97,00 */
-    vertical-align: baseline;
-    margin-left: 5px;
-    color: #6b7280;
+    font-size: 1.5em; /* Ajustado para ser menor que o price-value */
     font-weight: 500;
+    color: #666;
+    margin-left: 5px;
 }
 
 .plan-cta {
@@ -1131,9 +1129,7 @@ body {
     .plan-option-item {
         flex-basis: 100%;
         max-width: 100%;
-    }
-    .plan-features li {
-        justify-content: flex-start;
+        margin-bottom: 20px; /* Espaçamento entre as colunas no mobile */
     }
 }
 
@@ -1247,6 +1243,10 @@ body {
     }
 }
 
+
+
+
+
 /* Ebook Section Styles */
 .ebook-section {
     padding: 80px 0;
@@ -1260,6 +1260,19 @@ body {
     flex-direction: column; /* Padrão para mobile */
     align-items: center;
     gap: 40px;
+}
+
+.ebook-text-content {
+    order: 1; /* Texto primeiro */
+}
+
+.ebook-image {
+    order: 2; /* Imagem em segundo */
+    flex-shrink: 0;
+}
+
+.ebook-button {
+    order: 3; /* Botão em terceiro */
 }
 
 .ebook-text h2 {
@@ -1276,10 +1289,6 @@ body {
     max-width: 700px;
     margin-left: auto;
     margin-right: auto;
-}
-
-.ebook-image {
-    flex-shrink: 0;
 }
 
 .ebook-cover {
@@ -1314,9 +1323,18 @@ body {
         justify-content: center;
     }
 
-    .ebook-text {
+    .ebook-text-content {
         flex: 1;
         padding-right: 40px; /* Espaçamento entre texto e imagem */
+        order: unset; /* Reseta a ordem para desktop */
+    }
+
+    .ebook-image {
+        order: unset; /* Reseta a ordem para desktop */
+    }
+
+    .ebook-button {
+        order: unset; /* Reseta a ordem para desktop */
     }
 
     .ebook-text h2,
@@ -1325,6 +1343,30 @@ body {
         margin-right: 0;
     }
 }
+
+@media (max-width: 768px) {
+    .ebook-content {
+        flex-direction: column; /* Define a direção da coluna para mobile */
+    }
+    .ebook-text-content {
+        order: 1;
+    }
+    .ebook-image {
+        order: 2;
+    }
+    .ebook-button {
+        order: 3;
+    }
+}
+
+
+
+
+
+
+
+
+
 
 
 
