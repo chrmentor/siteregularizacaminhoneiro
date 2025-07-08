@@ -1,19 +1,30 @@
 // DOM Content Loaded
 document.addEventListener('DOMContentLoaded', function() {
+    console.log('DOM carregado');
+    
+    // Verificar se EmailJS está disponível
+    if (typeof emailjs !== 'undefined') {
+        console.log('EmailJS carregado com sucesso');
+    } else {
+        console.error('EmailJS não foi carregado!');
+    }
+    
     // Mobile Menu Toggle
     const hamburger = document.querySelector('.hamburger');
     const navMenu = document.querySelector('.nav-menu');
 
-    hamburger.addEventListener('click', function() {
-        hamburger.classList.toggle('active');
-        navMenu.classList.toggle('active');
-    });
+    if (hamburger && navMenu) {
+        hamburger.addEventListener('click', function() {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
 
-    // Close mobile menu when clicking on a link
-    document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', () => {
-        hamburger.classList.remove('active');
-        navMenu.classList.remove('active');
-    }));
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+        }));
+    }
 
     // Smooth scrolling for navigation links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -91,19 +102,6 @@ document.addEventListener('DOMContentLoaded', function() {
     };
     observeElements();
 
-    // Re-observe elements for fade-in animation after DOM changes
-    const reObserveElements = () => {
-        document.querySelectorAll(".testimonial-card").forEach(el => {
-            if (!el.classList.contains('fade-in')) {
-                el.classList.add('fade-in');
-                observer.observe(el);
-            }
-        });
-    };
-
-    // Call reObserveElements after initial load and any dynamic content additions
-    reObserveElements();
-
     // FAQ Accordion
     document.querySelectorAll('.faq-question').forEach(question => {
         question.addEventListener('click', function() {
@@ -122,11 +120,25 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Contact Form
+    // Contact Form - VERSÃO CORRIGIDA
     const contactForm = document.querySelector('.contact-form');
+    console.log('Procurando formulário:', contactForm);
+    
     if (contactForm) {
+        console.log('Formulário encontrado, adicionando event listener');
+        
         contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
+            console.log('Formulário submetido - evento capturado');
+            
+            // Verificar se EmailJS está disponível
+            if (typeof emailjs === 'undefined') {
+                console.error('EmailJS não está carregado!');
+                alert('Erro: EmailJS não está disponível. Verifique a conexão com a internet.');
+                return;
+            }
+            
+            console.log('EmailJS disponível, prosseguindo...');
             
             // Show loading state
             const submitButton = this.querySelector('button[type="submit"]');
@@ -141,6 +153,17 @@ document.addEventListener('DOMContentLoaded', function() {
             const telefone = formData.get('telefone');
             const mensagem = formData.get('mensagem');
             
+            console.log('Dados capturados:', { nome, email, telefone, mensagem });
+            
+            // Validar campos obrigatórios
+            if (!nome || !email || !mensagem) {
+                console.error('Campos obrigatórios não preenchidos');
+                alert('Por favor, preencha todos os campos obrigatórios (Nome, Email e Mensagem).');
+                submitButton.textContent = originalText;
+                submitButton.disabled = false;
+                return;
+            }
+            
             // Get current date and time
             const now = new Date();
             const captureDate = now.toLocaleDateString('pt-BR');
@@ -150,11 +173,14 @@ document.addEventListener('DOMContentLoaded', function() {
             const templateParams = {
                 from_name: nome,
                 from_email: email,
-                phone: telefone,
+                phone: telefone || 'Não informado',
                 message: mensagem,
                 capture_date: captureDate,
                 capture_time: captureTime
             };
+            
+            console.log('Parâmetros do template:', templateParams);
+            console.log('Enviando para EmailJS com Service ID: service_7e11g2i, Template ID: template_9ykkg1h');
             
             // Send email via EmailJS
             emailjs.send('service_7e11g2i', 'template_9ykkg1h', templateParams)
@@ -162,26 +188,34 @@ document.addEventListener('DOMContentLoaded', function() {
                     console.log('Email enviado com sucesso!', response.status, response.text);
                     
                     // Show success message
-                    showNotification('Mensagem enviada com sucesso! Entraremos em contato em breve.', 'success');
+                    alert('✅ Mensagem enviada com sucesso! Entraremos em contato em breve.');
                     
                     // Reset form
                     contactForm.reset();
                     
-                    // Optional: Also redirect to WhatsApp
+                    // Optional: Also redirect to WhatsApp after 2 seconds
                     setTimeout(() => {
-                        const whatsappMessage = `Olá! Meu nome é ${nome}.%0A%0A${mensagem}%0A%0AContatos:%0AEmail: ${email}%0ATelefone: ${telefone}`;
+                        const whatsappMessage = `Olá! Meu nome é ${nome}.%0A%0A${mensagem}%0A%0AContatos:%0AEmail: ${email}%0ATelefone: ${telefone || 'Não informado'}`;
                         const whatsappURL = `https://wa.me/5544999275821?text=${whatsappMessage}`;
+                        console.log('Redirecionando para WhatsApp:', whatsappURL);
                         window.open(whatsappURL, '_blank');
                     }, 2000);
                     
                 }, function(error) {
-                    console.error('Erro ao enviar email:', error);
+                    console.error('Erro detalhado ao enviar email:', error);
                     
-                    // Show error message
-                    showNotification('Erro ao enviar mensagem. Tente novamente ou entre em contato via WhatsApp.', 'error');
+                    // Show detailed error message
+                    let errorMessage = 'Erro ao enviar mensagem';
+                    if (error.text) {
+                        errorMessage += ': ' + error.text;
+                    } else if (error.message) {
+                        errorMessage += ': ' + error.message;
+                    }
+                    
+                    alert('❌ ' + errorMessage + '. Redirecionando para WhatsApp...');
                     
                     // Fallback to WhatsApp
-                    const whatsappMessage = `Olá! Meu nome é ${nome}.%0A%0A${mensagem}%0A%0AContatos:%0AEmail: ${email}%0ATelefone: ${telefone}`;
+                    const whatsappMessage = `Olá! Meu nome é ${nome}.%0A%0A${mensagem}%0A%0AContatos:%0AEmail: ${email}%0ATelefone: ${telefone || 'Não informado'}`;
                     const whatsappURL = `https://wa.me/5544999275821?text=${whatsappMessage}`;
                     window.open(whatsappURL, '_blank');
                 })
@@ -189,8 +223,12 @@ document.addEventListener('DOMContentLoaded', function() {
                     // Restore button state
                     submitButton.textContent = originalText;
                     submitButton.disabled = false;
+                    console.log('Estado do botão restaurado');
                 });
         });
+    } else {
+        console.error('❌ Formulário de contato não encontrado! Verificando seletores...');
+        console.log('Formulários encontrados na página:', document.querySelectorAll('form'));
     }
 
     // Form validation
@@ -300,37 +338,9 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-
-
     // Add loading animation
     window.addEventListener('load', function() {
         document.body.classList.add('loaded');
-    });
-
-    // WhatsApp button functionality
-    document.querySelectorAll('a[href="#contato"]').forEach(link => {
-        if (link.textContent.includes('WhatsApp') || link.classList.contains('btn-secondary')) {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-                const whatsappURL = 'https://wa.me/5511999998888?text=Olá! Gostaria de saber mais sobre os serviços de contabilidade para caminhoneiros.';
-                window.open(whatsappURL, '_blank');
-            });
-        }
-    });
-
-    // Pricing card hover effects
-    document.querySelectorAll('.pricing-card').forEach(card => {
-        card.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateY(-10px) scale(1.02)';
-        });
-
-        card.addEventListener('mouseleave', function() {
-            if (this.classList.contains('featured')) {
-                this.style.transform = 'scale(1.05)';
-            } else {
-                this.style.transform = 'translateY(0) scale(1)';
-            }
-        });
     });
 
     // Add error styles to CSS dynamically
@@ -356,82 +366,43 @@ document.addEventListener('DOMContentLoaded', function() {
             opacity: 0;
             transition: opacity 0.3s ease;
         }
+        
+        .scroll-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background: #ea580c;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+        
+        .scroll-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .scroll-top:hover {
+            background: #c2410c;
+            transform: translateY(-2px);
+        }
     `;
     document.head.appendChild(style);
-
-    // Initialize AOS (Animate On Scroll) alternative
-    function initScrollAnimations() {
-        const elements = document.querySelectorAll(".service-item, .pricing-card, .testimonial-card");
-        
-        elements.forEach((element, index) => {
-            element.style.opacity = '0';
-            element.style.transform = 'translateY(30px)';
-            element.style.transition = `all 0.6s ease ${index * 0.1}s`;
-        });
-    }
-
-    initScrollAnimations();
-
-    // Re-observe elements for fade-in animation after DOM changes
-    const reObserveElements = () => {
-        document.querySelectorAll(".testimonial-card").forEach(el => {
-            if (!el.classList.contains('fade-in')) {
-                el.classList.add('fade-in');
-                observer.observe(el);
-            }
-        });
-    };
-
-    // Call reObserveElements after initial load and any dynamic content additions
-    reObserveElements();
-
-    // Performance optimization: Debounce scroll events
-    function debounce(func, wait) {
-        let timeout;
-        return function executedFunction(...args) {
-            const later = () => {
-                clearTimeout(timeout);
-                func(...args);
-            };
-            clearTimeout(timeout);
-            timeout = setTimeout(later, wait);
-        };
-    }
-
-    // Optimized scroll handler
-    const optimizedScrollHandler = debounce(function() {
-        const scrolled = window.pageYOffset;
-        
-        // Header background
-        if (scrolled > 100) {
-            header.style.background = 'rgba(255, 255, 255, 0.98)';
-            header.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
-        } else {
-            header.style.background = 'rgba(255, 255, 255, 0.95)';
-            header.style.boxShadow = 'none';
-        }
-
-        // Scroll to top button
-        if (scrolled > 500) {
-            scrollTopBtn.classList.add('visible');
-        } else {
-            scrollTopBtn.classList.remove('visible');
-        }
-    }, 10);
-
-    window.addEventListener('scroll', optimizedScrollHandler);
 });
 
-// Service Worker for offline functionality (optional)
-if ('serviceWorker' in navigator) {
-    window.addEventListener('load', function() {
-        navigator.serviceWorker.register('/sw.js')
-            .then(function(registration) {
-                console.log('ServiceWorker registration successful');
-            })
-            .catch(function(err) {
-                console.log('ServiceWorker registration failed');
-            });
-    });
-}
+// Verificação adicional quando a página carrega completamente
+window.addEventListener('load', function() {
+    console.log('Página carregada completamente');
+    console.log('EmailJS disponível?', typeof emailjs !== 'undefined');
+    console.log('Formulário encontrado?', document.querySelector('.contact-form') !== null);
+});
 
