@@ -1283,7 +1283,7 @@ body {
 }
 
 .ebook-cover {
-    max-width: 250px; /* Tamanho da imagem do e-book */
+    max-width: 300px; /* Aumentado para 300px para a nova imagem do e-book */
     height: auto;
     border-radius: 8px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
