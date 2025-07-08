@@ -128,6 +128,12 @@ document.addEventListener('DOMContentLoaded', function() {
         contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
             
+            // Show loading state
+            const submitButton = this.querySelector('button[type="submit"]');
+            const originalText = submitButton.textContent;
+            submitButton.textContent = 'Enviando...';
+            submitButton.disabled = true;
+            
             // Get form data
             const formData = new FormData(this);
             const nome = formData.get('nome');
@@ -135,18 +141,55 @@ document.addEventListener('DOMContentLoaded', function() {
             const telefone = formData.get('telefone');
             const mensagem = formData.get('mensagem');
             
-            // Create WhatsApp message
-            const whatsappMessage = `Olá! Meu nome é ${nome}.%0A%0A${mensagem}%0A%0AContatos:%0AEmail: ${email}%0ATelefone: ${telefone}`;
-            const whatsappURL = `https://wa.me/5544999275821?text=${whatsappMessage}`;
+            // Get current date and time
+            const now = new Date();
+            const captureDate = now.toLocaleDateString('pt-BR');
+            const captureTime = now.toLocaleTimeString('pt-BR');
             
-            // Open WhatsApp
-            window.open(whatsappURL, '_blank');
+            // Prepare template parameters for EmailJS
+            const templateParams = {
+                from_name: nome,
+                from_email: email,
+                phone: telefone,
+                message: mensagem,
+                capture_date: captureDate,
+                capture_time: captureTime
+            };
             
-            // Show success message
-            showNotification('Redirecionando para o WhatsApp...', 'success');
-            
-            // Reset form
-            this.reset();
+            // Send email via EmailJS
+            emailjs.send('service_7e11g2i', 'template_9ykkg1h', templateParams)
+                .then(function(response) {
+                    console.log('Email enviado com sucesso!', response.status, response.text);
+                    
+                    // Show success message
+                    showNotification('Mensagem enviada com sucesso! Entraremos em contato em breve.', 'success');
+                    
+                    // Reset form
+                    contactForm.reset();
+                    
+                    // Optional: Also redirect to WhatsApp
+                    setTimeout(() => {
+                        const whatsappMessage = `Olá! Meu nome é ${nome}.%0A%0A${mensagem}%0A%0AContatos:%0AEmail: ${email}%0ATelefone: ${telefone}`;
+                        const whatsappURL = `https://wa.me/5544999275821?text=${whatsappMessage}`;
+                        window.open(whatsappURL, '_blank');
+                    }, 2000);
+                    
+                }, function(error) {
+                    console.error('Erro ao enviar email:', error);
+                    
+                    // Show error message
+                    showNotification('Erro ao enviar mensagem. Tente novamente ou entre em contato via WhatsApp.', 'error');
+                    
+                    // Fallback to WhatsApp
+                    const whatsappMessage = `Olá! Meu nome é ${nome}.%0A%0A${mensagem}%0A%0AContatos:%0AEmail: ${email}%0ATelefone: ${telefone}`;
+                    const whatsappURL = `https://wa.me/5544999275821?text=${whatsappMessage}`;
+                    window.open(whatsappURL, '_blank');
+                })
+                .finally(function() {
+                    // Restore button state
+                    submitButton.textContent = originalText;
+                    submitButton.disabled = false;
+                });
         });
     }
 
