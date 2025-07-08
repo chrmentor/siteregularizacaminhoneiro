@@ -996,6 +996,9 @@ body {
         flex-basis: 100%;
         max-width: 100%;
     }
+    .plan-features li {
+        justify-content: flex-start;
+    }
 }
 
 
@@ -1092,6 +1095,7 @@ body {
     display: flex;
     align-items: baseline;
     justify-content: center;
+    width: 100%;
 }
 
 .currency-symbol {
@@ -1242,5 +1246,85 @@ body {
         margin-bottom: 20px; /* Espaçamento entre as colunas no mobile */
     }
 }
+
+/* Ebook Section Styles */
+.ebook-section {
+    padding: 80px 0;
+    background: linear-gradient(135deg, #1e3a8a 0%, #1d4ed8 100%); /* Cor de fundo atraente */
+    color: white;
+    text-align: center;
+}
+
+.ebook-content {
+    display: flex;
+    flex-direction: column; /* Padrão para mobile */
+    align-items: center;
+    gap: 40px;
+}
+
+.ebook-text h2 {
+    font-size: 2.8rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+.ebook-text p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    margin-bottom: 30px;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.ebook-image {
+    flex-shrink: 0;
+}
+
+.ebook-cover {
+    max-width: 250px; /* Tamanho da imagem do e-book */
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.ebook-cta {
+    background: #ff6b35; /* Cor do botão de destaque */
+    color: white;
+    padding: 15px 30px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 50px; /* Botão mais arredondado */
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.ebook-cta:hover {
+    background: #e55a2b;
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+}
+
+@media (min-width: 769px) {
+    .ebook-content {
+        flex-direction: row; /* Layout em linha para desktop */
+        text-align: left;
+        justify-content: center;
+    }
+
+    .ebook-text {
+        flex: 1;
+        padding-right: 40px; /* Espaçamento entre texto e imagem */
+    }
+
+    .ebook-text h2,
+    .ebook-text p {
+        margin-left: 0;
+        margin-right: 0;
+    }
+}
+
 
 
