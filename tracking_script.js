@@ -3,7 +3,7 @@
 
 (function() {
     // Configuração
-    const PANEL_URL = 'http://localhost:5000'; // Alterar para URL do painel em produção
+    const PANEL_URL = 'https://painel-controle-regcam.onrender.com';
     
     // Função para registrar visita
     function trackVisit() {
